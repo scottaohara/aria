@@ -6540,28 +6540,54 @@
       </section>
     </section>
   <section class="normative">
-    <h2>Accessible Name and Description Calculation</h2>
+    <h2>Accessible Name and Description Computation</h2>
     <p>The terms <a class="termref">accessible name</a> and <a class="termref">accessible description</a> are properties provided in all <a class="termref" data-lt="accessibility API">accessibility APIs</a>. The name of the properties may differ across APIs but they serve the same function: as a container for a short (name) or longer (description) string of text. </p>
+    <p>
+      When computing an <a class="termref">accessible name</a> or 
+      <a class="termref">accessible description</a>, 
+      <a class="termref" data-lt="user agent">user agent</a>s MUST conform 
+      to the <a class="accname" href="#mapping_additional_nd_te">Text Alternative
+      Computation</a> algorithm of the [[!ACCNAME-AAM]] specification.
+      This section specifies HTML text alternative elements and attributes
+      (refer to <a class="accname" href="#step2A">step A</a> of the algorithm),
+      and how text alternative from HTML markup is computed (refer to
+      <a class="accname" href="#step2D">step D</a>).
+    </p>
     <section>
       <h3><code>input type="text"</code>, <code>input type="password"</code>,<code> input type="search"</code>,<code> input type="tel"</code>, <code>input type="url"</code> and <code>textarea</code> Element      </h3>
       <section>
       <h4><code>input type="text"</code>, <code>input type="password"</code>,<code> input type="search"</code>,<code> input type="tel"</code>, <code>input type="email"</code>, <code>input type="url"</code> and <code>textarea</code> Element Accessible Name Calculation</h4>
       <ol>
-        <li>If the control has an <a href="http://www.w3.org/TR/wai-aria-1.1/#aria-label"><code>aria-label</code></a> or an <a href="http://www.w3.org/TR/wai-aria-1.1/#aria-labelledby"><code>aria-labelledby</code></a> attribute the <a class="termref">accessible name</a> is to be calculated using the algorithm  defined in <a href="http://rawgit.com/w3c/aria/master/accname-aam/accname-aam.html">Accessible Name and Description: Computation and API Mappings 1.1</a>. </li>
-        <li>Otherwise use the associated <code>label</code> element</li>
+        <li>Use the associated <code>label</code> element</li>
         <li>Otherwise use the <code>placeholder</code> attribute</li>
-        <li>Otherwise use the <code>title</code> attribute</li>
-        <li>Otherwise use the aria-placeholder attribute</li>
-        <li>If none of the above yield a usable text string there is no <a class="termref">accessible name</a></li>
+        <li>
+          Otherwise use the <code>title</code> attribute as tooltip attribute
+          from <a class="accname" href="#step2H">step H</a>
+        </li>
+        <li>
+          Otherwise use the aria-placeholder attribute
+          <div class="ednote">
+            This shouldn't be part of HTML spec.
+          </div>
+        </li>
+        <li>
+          If none of the above yield a usable text string there is no
+          <a class="termref">accessible name</a> from HTML markup.
+        </li>
       </ol>
       </section>
       <section>
       <h4><code>input type="text"</code>, <code>input type="password"</code>,<code> input type="search"</code>,<code> input type="tel"</code>, <code>input type="email"</code>, <code>input type="url"</code> and <code>textarea</code> Element Accessible Description Calculation</h4>
       <ol>
-        <li>If the element has an <a href="http://www.w3.org/TR/wai-aria-1.1/#aria-describedby"><code>aria-describedby</code></a> attribute the <a class="termref">accessible description</a> is to be calculated using the algorithm defined in <a href="http://rawgit.com/w3c/aria/master/accname-aam/accname-aam.html">Accessible Name and Description: Computation and API Mappings 1.1</a>.</li>
-        <li>Otherwise use the <code>placeholder</code> attribute if it wasn't used as the <a class="termref">accessible name</a></li>
+        <li>
+          Use the <code>placeholder</code> attribute if it wasn't used as
+          the <a class="termref">accessible name</a>
+        </li>
         <li>Otherwise use the <code>title</code> attribute if it wasn't used as the <a class="termref">accessible name</a>.</li>
-        <li>If none of the above yield a usable text string there is no <a class="termref">accessible description</a></li>
+        <li>
+          If none of the above yield a usable text string there is no
+          <a class="termref">accessible description</a> from HTML markup.
+        </li>
       </ol>
 </section>
 </section>
