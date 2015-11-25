@@ -159,6 +159,108 @@
       </section>
     </section>
     <section>
+      <h3>The elements of HTML</h3>
+      <p>
+        The section describes mapping of HTML elements and their attributes
+        to accessibility APIs.
+      </p>
+      <p>
+        HTML semantics is mapped to the accessible properties, for example,
+        HTML <code>label</code> element provides an accessible name for a related
+        form control element. This mapping is referred as a native mapping,
+        stressing out, that it may be overridden by number of ways, including
+        ARIA attributes. Computations of the accessible properties conform to
+        general algorithms, which define when a native mapping takes a place.
+        For example, text alternative computation (accessible
+        name and accessible description) is performed in accordance to the core
+        algorithm, and the native mapping is used iff the algorithm says so.
+      </p>
+      <section>
+        <h4>Forms</h4>
+        <section>
+          <h5 id="label-element">The <code>label</code> element</h5>
+          <p>
+            The <code>label</code> element provides an accessible name for
+            the related form control. The relation between a <code>label</code>
+            element and its form control element is defined by HTML spec (link).
+            For example, if HTML <code>label</code> has <code>for</code>
+            attribute with <code>IDRef</code> value pointing to a form element
+            then the label element and the form control element are in relation.
+          </p>
+          <p>
+           A relationship between a label and its
+            control are exposed via <a>accessible relations</a> as
+            <code>aria-labelledby</code> was present on the form element pointing
+            to the <code>label</code>.
+          </p>
+        </section>
+        <section>
+          <h5>The <code>input</code> element</h5>
+          <p>
+            The <code>input</code> element may represent a wide set of widgets,
+            depending on value of its <code>type</code> attribute. The widgets
+            are grouped by their roles (aka mapping types), not to be confused
+            with ARIA roles, which may coincide or not.
+          </p>
+          <section>
+            <h6>The <code>button</code> role</h6>
+            <p>
+              Role: <code>button</code> (link to ARIA UAIG mapping)
+            </p>
+            <p>
+              Name:
+              <ul>
+                <li>
+                  related <a href="#label-element"><code>label</code></a>
+                  element
+                </li>
+                <li>
+                  otherwise <code>value</code> attribute
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <code>title</code> attribute as a last resort (alg's H step link)
+                </li>
+              </ul>
+            </p>
+            <p>
+              Description: <code>title</code> attribute if it wasn't used
+              as a name.
+            </p>
+            <p>
+              Relations: from <a href="#label-element"><code>label</code></a> element.
+            </p>
+            <p>
+              Applied to:
+              <ul>
+                <li>
+                  <code>type=button</code>
+                </li>
+              </ul>
+            </p>
+          </section>
+          <section>
+            <h6>The <code>submit</code> role</h6>
+            <p>
+              Same as <code>button</code> (link) role, plus extra mapping.
+            </p>
+            <p>
+              States: <code>default</code>
+            </p>
+            <p>
+              Applied to:
+              <ul>
+                <li>
+                  <code>type=submit</code>
+                </li>
+              </ul>
+            </p>
+          </section>
+        </section>
+      </section>
+    </section>
+    <section>
       <h3>HTML Element Role Mappings</h3>
       <section>
       	<p><strong>Notes:</strong> </p>
