@@ -156,11 +156,11 @@ built in conjunction with the W3C PFWG if any new roles are to be in the default
 
 When building an extension spec, use the boiler plate provided in aria/template.html as a basis.  
 
-Note that this template uses the aria/script/ariaChild.js script.  That script knows how to incorporate
+Note that this template uses the common/script/ariaChild.js script.  That script knows how to incorporate
 information from the core ARIA specification into the extension spec so that new roles, states, and properties
 are well integrated into the overall ARIA taxonomy.
 
-The ariaChild.js script relies upon an input script (aria/script/roleInfo.js).  As of today, that file is not automatically generated.
+The ariaChild.js script relies upon an input script (common/script/roleInfo.js).  As of today, that file is not automatically generated.
 If you want to ensure the file is up to date, access the core ARIA spec with the special query string "?saveRoles"
 from a browser on a client that has write access to the copy of the extension spec you are editing. When the dialog appears, click
 the save button and tell your browser to save the roleInfo.js file into the aria/script directory.
