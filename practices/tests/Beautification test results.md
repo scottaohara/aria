@@ -47,7 +47,6 @@ but to keep researching more ways to keep the document source code consistent.
 ## Test 2: JS-Beautify
 
 Documentation: https://github.com/beautify-web/js-beautify
-Settings in .jsbeautifyrc
 
 ### JS-Beautify test results
 
