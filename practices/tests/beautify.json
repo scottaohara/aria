@@ -1,0 +1,13 @@
+{
+  "indent_size": 2,
+  "indent_char": " ",
+
+  "preserve_newlines": true,
+  "max_preserve_newlines": 2,
+
+  "end_with_newline": true,
+
+  "wrap_line_length": 80,
+  "wrap_attributes": "auto",
+  "wrap_attributes_indent_size": 2
+}

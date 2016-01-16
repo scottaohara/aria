@@ -1,0 +1,19 @@
+{
+  "name": "WAI-ARIA-APG-tests",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Research project to ensure consistent source code for the Authoring Practices Guide document",
+  "readme": "Beautification test results.md",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:w3c/aria.git"
+  },
+  "contributors": {
+    "name": "Michiel Bijl",
+    "email": "michiel@agosto.nl"
+  },
+  "dependencies": {},
+  "scripts": {
+    "beautify": "js-beautify -r --html --config beautify.json test-2-js-beautify.html"
+  }
+}
