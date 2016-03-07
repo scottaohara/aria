@@ -178,7 +178,9 @@
     </p>
     <p>This document is part of the WAI-ARIA suite described in the <a href="http://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
   </section>
+
   <section id="sotd"></section>
+
   <section id="intro">
     <h2>Introduction</h2>
     <p>This section is <em>informative.</em></p>
@@ -204,6 +206,264 @@
       It includes guidance on dynamic document management, use of WAI-ARIA Form properties, and the creation of WAI-ARIA-enabled alerts and dialogs.
     </p>
   </section>
+
+  <section id="landmarks">
+    <h2>Landmark roles design patterns</h2>
+
+    <p>
+      A landmark is a recognisable feature or area of a web page like the header, footer, navigation, and main content area.
+      These areas can be made identifiable with ARIA landmark roles.
+      Assistive technologies like screen readers provide keyboard shortcuts for navigating between landmarks, and scripting can be used to provide keyboard navigation within the web page itself.
+    </p>
+
+    <section>
+      <h3>General design principles</h3>
+
+      <p>It is helpful when all content resides within a landmark region, so users do not miss important features.</p>
+
+      <section>
+        <h4>Identify content regions</h4>
+
+        <ul>
+          <li>Identify the top level regions of content within the document, like the header, main content, footer or navigation</li>
+          <li>Identify any child regions of content contained within top level regions, like a search form within a header or navigation blocks within the main content</li>
+          <li>Tip: Designers often use spacial orientation and visual alignment to indicate different regions within a document</li>
+        </ul>
+
+        <figure>
+          <figcaption>The following screenshot has the 1. header/banner (blue border), 2. navigation (purple border), and 3. main content (green border) regions indicated.
+          (marked by both the numbers listed and a border colour):</figcaption>
+          <img src="img/landmarks-marked.png" alt="Annotated screenshot of the 24ways.org website">
+        </figure>
+      </section>
+
+      <section>
+        <h4>Assign landmark roles</h4>
+
+        <ul>
+          <li>Use the role attribute to assign each region of content a <a href="#landmarks">landmark role</a></li>
+          <li>Tip: banner, main, complementary and contentinfo are all top level landmarks</li>
+        </ul>
+
+        <p>The following code example demonstrates how the role attribute is used to assign the banner, main and contentinfo landmarks:</p>
+
+<pre><code>&lt;body&gt;
+  &lt;div id="header" role="banner"&gt;
+  ...
+  &lt;/div&gt;
+
+  &lt;div id="main" role="main"&gt;
+  ...
+  &lt;/div&gt;
+
+  &lt;div id="footer" role="contentinfo"&gt;
+  ...
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+      </section>
+
+
+      <section>
+        <h4>Add labels</h4>
+
+        <ul>
+          <li>If a document contains multiple instances of the same landmark, assign each one a label to differentiate it from the rest.</li>
+          <li>
+          Do not use the landmark role as part of the label.
+          For example a navigation landmark with a label "Site Navigation" will be announced by a screen reader as "Site Navigation Navigation".
+          The label should simply be "Site".
+          </li>
+          <li>
+          Tip: If the landmark region has a heading, use the <a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-labelledby"><code>aria-labelledby</code></a> attribute to make the heading act as the label for the landmark region.
+          For example:
+<pre><code>&lt;div role="region" aria-labelledby="weatherLabel"&gt;
+  &lt;h2 id="weatherLabel"&gt;Weather forecast&lt;/h2&gt;
+  ...
+&lt;/div&gt;</code></pre>
+          </li>
+          <li>
+          Tip: If the landmark region does not have a heading, use the <a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-label"><code>aria-label</code></a> attribute to provide an invisible label.
+          For example:
+<pre><code>&lt;div role="region" aria-label="Weather forecast"&gt;
+  ...
+&lt;/div&gt;</code></pre>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <section>
+      <h3>Landmark roles</h3>
+
+      <p>There are landmark roles that identify common content features.</p>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#banner">banner</a> role</h4>
+
+        <p>
+          A region containing site oriented content, like the logo, site sponsor or site search.
+          A banner region usually appears at the top of the document, and spans its full width.
+        </p>
+
+        <ul>
+          <li>Each document should only have one banner landmark</li>
+          <li>A document may contain child documents or application regions, each of which should only have one banner landmark</li>
+          <li>If a document contains child documents or application regions, each banner landmark should have a label to differentiate it from the rest</li>
+          <li>The banner landmark should represent a top level region of the document</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#complementary">complementary</a> role</h4>
+
+        <p>A region containing content that is complementary to the main content, and which has equal importance in the content hierarchy.</p>
+
+        <ul>
+          <li>A document may have multiple complementary landmarks</li>
+          <li>If a document contains multiple complementary landmarks, each one should have a label to differentiate it from the rest</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#contentinfo">contentinfo</a> role</h4>
+
+        <p>
+          A region containing page specific content, like a copyright statement or links to privacy statements.
+          A contentinfo region is usually found at the bottom of the document, and spans its full width.
+        </p>
+
+        <ul>
+          <li>A document should only have one contentinfo landmark</li>
+          <li>A document may contain child documents or application regions, each of which should only have one contentinfo landmark</li>
+          <li>If a document contains child documents or application regions, each contentinfo landmark should have a label to differentiate it from the rest</li>
+          <li>The contentinfo landmark should represent a top level region of the document</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#form">form</a> role</h4>
+
+        <p>A region containing a collection of items and objectives that combine to represent a form.</p>
+
+        <ul>
+          <li>A document may have multiple form landmarks</li>
+          <li>Tip: A form may contain a mixture of host language and custom controls, but the form landmark should not be used when the form contains only host language controls</li>
+          <li>Tip: Use the search landmark instead of the form landmark, when the form is used soley for search functionality</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#main">main</a> role</h4>
+
+        <p>A region containing the main content of the document.</p>
+
+        <ul>
+          <li>A document must only have one main landmark</li>
+          <li>A document may contain child documents or application regions, each of which must only have one main landmark</li>
+          <li>If a document contains child documents or application regions, each main region should have a label to differentiate it from the rest</li>
+          <li>The main landmark should represent a top level region of the document</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#navigation">navigation</a> role</h4>
+
+        <p>A region containing objects (usually links) for navigating the document or related documents.</p>
+
+        <ul>
+          <li>A document may have multiple navigation landmarks</li>
+          <li>If a document contains multiple navigation landmarks, each one should have a label to differentiate it from the rest</li>
+          <li>Tip: If multiple navigation landmarks hold the same set of links, they should have the same label</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#region">region</a> role</h4>
+
+        <p>A region containing content that does not fit logically into another landmark region, but which is important enough to be a recogniseable feature of the document.</p>
+
+        <ul>
+          <li>A document may contain multiple region landmarks</li>
+          <li>Every region landmark should have a label to indicate its purpose</li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>The <a href="https://www.w3.org/TR/wai-aria/roles#search">search</a> role</h4>
+
+        <p>A region containing a collection of items and objects that combine to create a search facility.</p>
+
+        <ul>
+          <li>A document may contain multiple search landmarks</li>
+          <li>If a document contains multiple search landmarks, each one should have a label to differentiate it from the rest</li>
+        </ul>
+      </section>
+    </section>
+
+    <section>
+      <h3>Landmarks in HTML5</h3>
+
+      <p>
+        Certain HTML elements directly correspond to ARIA landmarks.
+        If these HTML elements are used, it is not nescessary to assign landmark roles explicitly because the browser does this automatically.
+      </p>
+
+      <table>
+        <caption>HTML and ARIA landmarks</caption>
+
+        <tr>
+          <th>Role</th>
+          <th>Element</th>
+          <th>Notes</th>
+        </tr>
+
+        <tr>
+          <th>banner</th>
+          <td><a href="http://w3c.github.io/html/sections.html#the-header-element"><code>&lt;header&gt;</code></a></td>
+          <td>When the <code>&lt;header&gt;</code> element is scoped to the <code>&lt;body&gt;</code> element</td>
+        </tr>
+
+        <tr>
+          <th>complementary</th>
+          <td><a href="http://w3c.github.io/html/sections.html#the-aside-element"><code>&lt;aside&gt;</code></a></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th>contentinfo</th>
+          <td><a href="http://w3c.github.io/html/sections.html#the-footer-element"><code>&lt;footer&gt;</code></a></td>
+          <td>When the <code>&lt;footer&gt;</code> element is scoped to the <code>&lt;body&gt;</code> element</td>
+        </tr>
+
+        <tr>
+          <th>form</th>
+          <td><a href="http://w3c.github.io/html/sec-forms.html#the-form-element"><code>&lt;form&gt;</code></a></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th>main</th>
+          <td><a href="http://w3c.github.io/html/grouping-content.html#the-main-element"><code>&lt;main&gt;</code></a></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th>navigation</th>
+          <td><a href="http://w3c.github.io/html/sections.html#the-nav-element"><code>&lt;nav&gt;</code></a></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th>search</th>
+          <td>No equivalent</td>
+          <td></td>
+        </tr>
+      </table>
+
+      <p>The <a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings</a> provide more information about the relationship between HTML elements and ARIA roles.</p>
+    </section>
+  </section>
+
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
     <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
