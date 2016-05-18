@@ -6373,8 +6373,16 @@
             <div class="role-description">
                 <p>A moveable divider between two sections of content that enables the user to change the  relative size of the sections. </p>
                 <p>
-                A <code>splitter</code> is a widget that both provides a visible boundary between two sections of content and enables the user to change the relative size of the sections by changing the position of the <code>splitter</code>.
+                A <code>splitter</code> is a <rref>widget</rref> that both provides a visible boundary between two sections of content and enables the user to change the relative size of the sections by changing the position of the <code>splitter</code>.
+                A variable splitter allows the user to move the splitter continuously within a range where as a fixed splitter supports only 2 discrete positions.
+                Typically, a fixed splitter is used to toggle one of the sections between expanded and collapsed states.
                 To create a static divider that can not be moved, use the <rref>separator</rref> role.
+                </p>
+                <p>
+                For a variable splitter, authors MAY use <pref>aria-valuenow</pref> to specify a proportional size for one of the sections.
+                For example, in a book reader with a <code>splitter</code> dividing the window between a topic pane and a table of contents pane, 
+                the splitter could be labeled &quot;Table of Contents&quot; and its value set to <code>50</code> in a range of <code>0</code> to <code>100</code> when the table of contents pane is at half its maximum size.
+                Authors MAY use <psef>aria-expanded</sref> to communicate the state of a fixed splitter.
                 </p>
                 <p>Elements with the role <code>splitter</code> have an implicit <pref>aria-orientation</pref> value of <code>horizontal</code>.</p>
             </div>
@@ -6423,6 +6431,7 @@
                         <th class="role-properties-head" scope="row">Supported States and Properties:</th>
                         <td class="role-properties">
                         <ul>
+                        <li><sref>aria-expanded</sref> </li>
                                 <li><pref>aria-valuemax</pref></li>
                                 <li><pref>aria-valuemin</pref></li>
                                 <li><pref>aria-valuenow</pref></li>
@@ -6447,7 +6456,7 @@
                     </tr>
                     <tr>
                         <th class="role-childpresentational-head" scope="row">Children Presentational:</th>
-                        <td class="role-childpresentational"> </td>
+                        <td class="role-childpresentational">true</td>
                     </tr>
                     <tr>
                         <th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
@@ -6456,10 +6465,10 @@
                     <tr>
                         <th class="implicit-values-head" scope="row">Implicit Value for Role:</th>
                         <td class="implicit-values">
-                        Default for <pref>aria-orientation</pref> is <code>horizontal</code>.
+                        Default for <pref>aria-orientation</pref> is <code>horizontal</code>.<br/>
                             Default for <pref>aria-valuemin</pref> is that there is no minimum value.<br/>
                             Default for <pref>aria-valuemax</pref> is that there is no maximum value.<br/>
-                            Default for <pref>aria-valuenow</pref> is <code>0</code>.<br/>
+                            Default for <pref>aria-valuenow</pref> is no value.<br/>
                         </td>
                     </tr>
                 </tbody>
