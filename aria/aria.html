@@ -6059,12 +6059,20 @@
 			<div class="role-description">
 				<p>A divider that separates and distinguishes sections of content or groups of menuitems.</p>
 				<p>
-                A <code>separator</code> provides a visible boundary that divides sections of content. 
-                For example, a separator can be used to help visually divide two groups of menu items in a menu or to provide a horizontal rule between two sections of a page.
+                There are two types of separators: a sstatic <rref>structure</rref> that provides only a visible boundary and a focusable, interactive <rref>widget</rref> that is also moveable.
+                If a separator is not focusable, it is revealed to assistive technologies as a static structural element.
+                For example, a static separator can be used to help visually divide two groups of menu items in a menu or to provide a horizontal rule between two sections of a page.
                 </p>
                 <p>
-                A <code>separator</code> is static.
-                To create a movable or interactive divider, use the <rref>splitter</rref> role.
+                Authors MAY make a <code>separator</code> focusable to create a <code>widget</code> that both provides a visible boundary between two sections of content and enables the user to change the relative size of the sections by changing the position of the <code>separator</code>.
+                A variable separator widget allows the user to move the splitter continuously within a range where as a fixed separator widget supports only 2 discrete positions.
+                Typically, a fixed separator widget is used to toggle one of the sections between expanded and collapsed states.
+                Authors MAY use <sref>aria-expanded</sref> to communicate the state of a separator widget.
+                </p>
+                <p>
+                If a <code>separator</code> widget supports continuously variable positioning within a range of positions, authors MAY use <pref>aria-valuenow</pref> to specify a proportional size for one of the sections.
+                For example, in a book reader with a moveable <code>separator</code> dividing the window between a topic pane and a table of contents pane, 
+                the separator could be labeled &quot;Table of Contents&quot; and its value set to <code>50</code> in a range of <code>0</code> to <code>100</code> when the table of contents pane is at half its maximum size.
                 </p>
 				<p>Elements with the role <code>separator</code> have an implicit <pref>aria-orientation</pref> value of <code>horizontal</code>.</p>
 			</div>
@@ -6083,7 +6091,12 @@
 					</tr>
 					<tr>
 						<th class="role-parent-head" scope="row">Superclass Role:</th>
-						<td class="role-parent"><rref>structure</rref></td>
+						<td class="role-parent">
+                        <ul>
+                        <li><rref>structure</rref></li>
+                        <li><rref>widget</rref>
+                        </ul>
+                        </td>
 					</tr>
 					<tr>
 						<th class="role-children-head" scope="row">Subclass Roles:</th>
@@ -6111,7 +6124,19 @@
 					</tr>
 					<tr>
 						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
-						<td class="role-properties"> <pref>aria-orientation</pref> </td>
+						<td class="role-properties"> 
+                        <ul>
+                        <li><pref>aria-orientation</pref></li>
+                        <li>If focusable, then:
+                        <ul>
+                        <li><sref>aria-expanded</sref> </li>
+                                <li><pref>aria-valuemax</pref></li>
+                                <li><pref>aria-valuemin</pref></li>
+                                <li><pref>aria-valuenow</pref></li>
+                            </ul>
+                        </li>
+                        </ul>
+                        </td>
 					</tr>
 					<tr>
 						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
@@ -6363,112 +6388,6 @@
 				</tbody>
 			</table>
 		</div>
-        <div class="role" id="splitter">
-            <rdef>splitter</rdef>
-            <div class="role-description">
-                <p>A moveable divider between two sections of content that enables the user to change the  relative size of the sections. </p>
-                <p>
-                A <code>splitter</code> is a <rref>widget</rref> that both provides a visible boundary between two sections of content and enables the user to change the relative size of the sections by changing the position of the <code>splitter</code>.
-                A variable splitter allows the user to move the splitter continuously within a range where as a fixed splitter supports only 2 discrete positions.
-                Typically, a fixed splitter is used to toggle one of the sections between expanded and collapsed states.
-                To create a static divider that can not be moved, use the <rref>separator</rref> role.
-                </p>
-                <p>
-                Authors MAY use <psef>aria-expanded</sref> to communicate the state of a fixed splitter.
-                For a variable splitter, authors MAY use <pref>aria-valuenow</pref> to specify a proportional size for one of the sections.
-                For example, in a book reader with a <code>splitter</code> dividing the window between a topic pane and a table of contents pane, 
-                the splitter could be labeled &quot;Table of Contents&quot; and its value set to <code>50</code> in a range of <code>0</code> to <code>100</code> when the table of contents pane is at half its maximum size.
-                </p>
-                <p>Elements with the role <code>splitter</code> have an implicit <pref>aria-orientation</pref> value of <code>horizontal</code>.</p>
-            </div>
-            <table class="role-features">
-                <caption>Characteristics:</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Characteristic</th>
-                        <th scope="col">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="role-abstract-head" scope="row">Is Abstract:</th>
-                        <td class="role-abstract"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-parent-head" scope="row">Superclass Role:</th>
-                        <td class="role-parent"><rref>widget</rref> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-children-head" scope="row">Subclass Roles:</th>
-                        <td class="role-children">Placeholder</td>
-                    </tr>
-                    <tr>
-                        <th class="role-base-head" scope="row">Base Concept:</th>
-                        <td class="role-base"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-related-head" scope="row">Related Concepts:</th>
-                        <td class="role-related"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-scope-head" scope="row">Required Context Role:</th>
-                        <td class="role-scope"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
-                        <td class="role-mustcontain"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-required-properties-head">Required States and Properties:</th>
-                        <td class="role-required-properties"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-properties-head" scope="row">Supported States and Properties:</th>
-                        <td class="role-properties">
-                        <ul>
-                        <li><sref>aria-expanded</sref> </li>
-                                <li><pref>aria-valuemax</pref></li>
-                                <li><pref>aria-valuemin</pref></li>
-                                <li><pref>aria-valuenow</pref></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
-                        <td class="role-inherited">Placeholder</td>
-                    </tr>
-                    <tr>
-                        <th class="role-namefrom-head" scope="row">Name From:</th>
-                        <td class="role-namefrom">author</td>
-                    </tr>
-                    <tr>
-                        <th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
-                        <td class="role-namerequired">false</td>
-                    </tr>
-                    <tr>
-                        <th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
-                        <td class="role-namerequired-inherited"> </td>
-                    </tr>
-                    <tr>
-                        <th class="role-childpresentational-head" scope="row">Children Presentational:</th>
-                        <td class="role-childpresentational">true</td>
-                    </tr>
-                    <tr>
-                        <th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
-                        <td class="role-presentational-inherited"> </td>
-                    </tr>
-                    <tr>
-                        <th class="implicit-values-head" scope="row">Implicit Value for Role:</th>
-                        <td class="implicit-values">
-                        Default for <pref>aria-orientation</pref> is <code>horizontal</code>.<br/>
-                            Default for <pref>aria-valuemin</pref> is that there is no minimum value.<br/>
-                            Default for <pref>aria-valuemax</pref> is that there is no maximum value.<br/>
-                            Default for <pref>aria-valuenow</pref> is no value.<br/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 		<div class="role" id="status">
 			<rdef>status</rdef>
 			<div class="role-description">
