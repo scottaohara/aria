@@ -10284,11 +10284,11 @@
               <li>The element to which <code>aria-roledescription</code> is applied has a valid WAI-ARIA role or has an implicit WAI-ARIA role semantic.</li>
               <li>Unless applied to an element with an implied or explicit role of <rref>img</rref>, the value of <code>aria-roledescription</code> is not empty or does not contain only white space characters. </li>
               </ol>
-              <p>In the special case of <rref>img</rref>, authors MAY use an empty value to suggest to assistive technologies that the content of the image element is text and that rendering the element label without its localized role name is adequate. </p>
+              <p>In the special case of elements with the <rref>img</rref> role, authors MAY use an empty value to suggest to assistive technologies that the content of the image element is text and that rendering the element label without its localized role name is adequate. </p>
               <p>User agents MUST NOT expose the <code>aria-roledescription</code> property if any of the following conditions exist.</p>
               <ol>
               <li>The element to which <code>aria-roledescription</code> is applied does not have a valid WAI-ARIA role or does not have an implicit WAI-ARIA role semantic.</li>
-              <li>The value of aria-roledescription is empty or contains only white space characters.</li>
+              <li>The implied or explicit role of the element to which <code>aria-roledescription</code> is applied is not <rref>img</rref> and the value of aria-roledescription is empty or contains only white space characters. </li>
               </ol>
               <p>
               <a>Assistive technoligies</a> SHOULD use the value of <code>aria-roledescription</code> when rendering the role of an element, but SHOULD NOT change other functionality based on the role of an element that has a value for <code>aria-roledescription</code>.
