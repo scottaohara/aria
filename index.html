@@ -2651,8 +2651,8 @@
 		<div class="role" id="generic">
 			<rdef>generic</rdef>
 			<div class="role-description">
-				<p>A container <a>element</a> that has no special meaning on its own, but it represents its children, and it can be styled.</p>
-				<p>The <pref>aria-textseparation</pref> <a>attribute</a> of a <rref>generic</rref> indicates how its text content is separated from the text content of neighboring elements.</p>
+				<p>A nameless container <a>element</a> that has no special meaning on its own, but can provide accessible states and properties for its descendants.</p>
+				<p>The <pref>aria-textseparation</pref> <a>attribute</a> of a <rref>generic</rref> indicates how its text content is separated from adjacent text content of adjacent <code>generic</code> elements.</p>
 			</div>
 			<table class="role-features">
 				<caption>Characteristics:</caption>
@@ -2709,7 +2709,7 @@
 					</tr>
 					<tr>
 						<th class="role-namefrom-head" scope="row">Name From:</th>
-						<td class="role-namefrom">author</td>
+						<td class="role-namefrom">contents</td>
 					</tr>
 					<tr>
 						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
@@ -11089,9 +11089,8 @@
 		<div class="property" id="aria-textseparation">
 			<pdef>aria-textseparation</pdef>
 			<div class="property-description">
-				<p>Defines how text content of an <a>element</a> is separated from text content of neighboring elements.</p>
-		        <p>Authors SHOULD ensure that the type of text separation specified matches the visual rendering.</p>
-		        <p>The <pref>aria-textseparation</pref> <a>property</a> is an enumerated type. Any value not recognized in the list of allowed <span>values</span> SHOULD be treated by <a>assistive technologies</a> as if the value <code>inherit</code> had been provided. For future expansion, if the attribute is not present or its value is an empty string or <code>undefined</code>, the default value of <code>inherit</code> applies.</p>
+				<p>Defines how text content of a <code>generic</code> <a>element</a> is separated from text content of adjacent <code>generic</code> elements.</p>
+		        <p>The <pref>aria-textseparation</pref> <a>property</a> is an enumerated type. Any value not recognized in the list of allowed <span>values</span> SHOULD be treated by <a>assistive technologies</a> as if the value <code>style</code> had been provided. If the attribute is not present or its value is an empty string or <code>undefined</code>, the default value of <code>style</code> applies.</p>
 			</div>
 			<table class="property-features">
 				<caption>Characteristics:</caption>
@@ -11134,11 +11133,11 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th class="value-name" scope="row"><strong class="default">inherit (default)</strong></th>
+						<th class="value-name" scope="row"><strong class="default">style (default)</strong></th>
 						<td class="value-description">Indicates that the element's text is separated from neighboring element text according to the element's display style.</td>
 					</tr>
 					<tr>
-						<th class="value-name" scope="row">line</th>
+						<th class="value-name" scope="row">linebreak</th>
 						<td class="value-description">Indicates that the element's text is separated from neighboring element text by a line break.</td>
 					</tr>
 					<tr>
@@ -11146,7 +11145,7 @@
 						<td class="value-description">Indicates that the element's text is not separated from neighboring element text; it is rendered as a continuous whole, without any delineation.</td>
 					</tr>
 					<tr>
-						<th class="value-name" scope="row">paragraph</th>
+						<th class="value-name" scope="row">paragraphbreak</th>
 						<td class="value-description">Indicates that the element's text is separated from neighboring element text by a paragraph break.</td>
 					</tr>
 					<tr>
